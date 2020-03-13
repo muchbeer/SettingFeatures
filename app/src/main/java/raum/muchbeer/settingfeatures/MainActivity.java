@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import raum.muchbeer.settingfeatures.settingsfragment.model.Messages;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -43,13 +45,17 @@ public class MainActivity extends AppCompatActivity {
         // argument is a boolean that indicates whether the default values
         // should be set more than once. When false, the system sets the default
         // values only the first time it is called.
-        PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
+     /*   PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_notification, false);
-        PreferenceManager.setDefaultValues(this, R.xml.pref_account, false);
+        PreferenceManager.setDefaultValues(this, R.xml.pref_account, false);*/
 
         // Read settings from the shared preferences and display a toast.
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String marketPref = sharedPref.getString("sync_frequency", "-1");
+     /*   SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String marketPref = sharedPref.getString("sync_frequency", "-1");*/
+
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(this /* Activity context */);
+        String marketPref = sharedPreferences.getString("example_text", "");
         displayToast(marketPref);
 
     }
@@ -73,7 +79,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(settingsIntent);
                 return true;
             case R.id.action_status:
-                displayToast(getString(R.string.action_status_message));
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(this /* Activity context */);
+                Boolean switchPref = sharedPreferences.getBoolean("notifications_new_message_vibrate", false);
+
+                if(switchPref) {
+                    displayToast("Switch On");
+                }
+                else displayToast("Switch OFf");
+              //  displayToast(getString(R.string.action_status_message));
                 return true;
             case R.id.action_favorites:
                 displayToast(getString(R.string.action_favorites_message));
