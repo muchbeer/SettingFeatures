@@ -34,6 +34,8 @@ public class MessageFragment extends PreferenceFragmentCompat {
 
         SwitchPreference prefSwitchNotification = findPreference("notifications_new_message_vibrate");
 
+
+
     }
 
 

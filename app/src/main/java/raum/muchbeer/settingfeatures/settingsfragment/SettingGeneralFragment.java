@@ -3,23 +3,42 @@ package raum.muchbeer.settingfeatures.settingsfragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.EditTextPreference;
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
 import raum.muchbeer.settingfeatures.MainActivity;
 import raum.muchbeer.settingfeatures.R;
-import raum.muchbeer.settingfeatures.SettingsActivity;
-import raum.muchbeer.settingfeatures.settingsfragment.model.Messages;
 
 public class SettingGeneralFragment extends PreferenceFragmentCompat {
 
     private static final String LOG_TAG = SettingGeneralFragment.class.getSimpleName();
-    private Messages messages;
+    private ListPreference mListPreference;
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        mListPreference = (ListPreference)  getPreferenceManager().findPreference("example_list");
+        mListPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+               // app.savePublicPreference(Common.PREFERENCE_INT_RECTIME, Integer.valueOf((String)newValue));
+                return true;
+            }
+        });
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.pref_general, rootKey);
@@ -27,6 +46,7 @@ public class SettingGeneralFragment extends PreferenceFragmentCompat {
         EditTextPreference inputText = findPreference("example_text");
        // messages.setMessages(inputText.getText());
         Log.d(LOG_TAG, "tHE input from the EditText is : "  + inputText.getText());
+
 
     }
 
