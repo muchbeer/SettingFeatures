@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="notifications_category"
+        app:title="General">
     <androidx.preference.SwitchPreference
         android:defaultValue="true"
         android:key="example_switch"
         android:summary="@string/pref_description_social_recommendations"
         android:title="@string/pref_title_social_recommendations" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="help_category"
+        app:title="Input">
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the
@@ -19,6 +29,9 @@
         android:singleLine="true"
         android:title="@string/pref_title_display_name" />
 
+
+
+
     <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the
     dialog to dismiss it. -->
     <!-- NOTE: ListPreference's summary should be set to its value by the
@@ -30,6 +43,13 @@
         android:key="example_list"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="@string/pref_title_add_friends_to_messages" />
+        android:title="@string/pref_title_add_friends_to_messages" /></PreferenceCategory>
+
+    <Preference
+        app:title="Notification"
+        app:key="notification_key"
+        app:fragment="raum.muchbeer.settingfeatures.settingsfragment.MessageFragment"
+        app:summary="Set Notification"
+        />
 
 </androidx.preference.PreferenceScreen>

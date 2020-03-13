@@ -26,4 +26,11 @@
         android:dependency="notifications_new_message"
         android:key="notifications_new_message_vibrate"
         android:title="@string/pref_title_vibrate" />
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="check_settings"
+        android:summary="Set the unit in Km"
+        android:title="Distance"
+        />
 </androidx.preference.PreferenceScreen>
