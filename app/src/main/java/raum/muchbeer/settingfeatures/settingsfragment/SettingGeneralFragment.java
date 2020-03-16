@@ -33,6 +33,7 @@ public class SettingGeneralFragment extends PreferenceFragmentCompat {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                // app.savePublicPreference(Common.PREFERENCE_INT_RECTIME, Integer.valueOf((String)newValue));
+                Log.d(LOG_TAG, "tHE value of the checkbox selected is: "+ newValue);
                 return true;
             }
         });
